@@ -1,20 +1,34 @@
+import { useState } from "react";
+
 function App() {
+  // let step = 1;
+  const [step, setStep] = useState(1);
   function handleNext() {
-    alert("Next Button Clicked");
+    // step += 1;
+    if (step < 3) setStep(step + 1);
+    console.log(step);
+    // console.log(step);
+  }
+
+  function handlePrev() {
+    // step += 1;
+    if (step > 1) setStep(step - 1);
+    console.log(step);
+    // console.log(step);
   }
 
   return (
     <div className="steps">
       <div className="numbers">
-        <div className="active">1</div>
-        <div className="">2</div>
-        <div className="">3</div>
+        <div className={step >= 1 ? "active" : ""}>1</div>
+        <div className={step >= 2 ? "active" : ""}>2</div>
+        <div className={step >= 3 ? "active" : ""}>3</div>
       </div>
       <p className="message">Step: Dream</p>
       <div className="buttons">
         <button
           style={{ backgroundColor: "#526D82", color: "#fff" }}
-          onMouseEnter={() => alert("prev hover")}
+          onClick={handlePrev}
         >
           Prev
         </button>
