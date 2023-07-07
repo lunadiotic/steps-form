@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla JavaScript App</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <button class="close">&times;</button>
+    <div class="steps" style="display: block">
+      <div class="numbers">
+        <div class="step">1</div>
+        <div class="step">2</div>
+        <div class="step">3</div>
+      </div>
+      <p class="message"></p>
+      <div class="buttons">
+        <button class="previous" style="background-color: #526d82; color: #fff">
+          Prev
+        </button>
+        <button class="next" style="background-color: #526d82; color: #fff">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const stepItems = ["Dream", "Believe", "Achieve"];
+      let step = 1;
+      let isOpen = true;
+
+      const closeButton = document.querySelector(".close");
+      const stepsContainer = document.querySelector(".steps");
+      const steps = stepsContainer.querySelectorAll(".step");
+      const message = document.querySelector(".message");
+      const previousButton = document.querySelector(".previous");
+      const nextButton = document.querySelector(".next");
+
+      closeButton.addEventListener("click", function () {
+        isOpen = !isOpen;
+        stepsContainer.style.display = isOpen ? "block" : "none";
+      });
+
+      function updateSteps() {
+        steps.forEach(function (stepElement, index) {
+          stepElement.classList.remove("active");
+          if (index + 1 <= step) {
+            stepElement.classList.add("active");
+          }
+        });
+      }
+
+      function updateMessage() {
+        message.textContent = `Step ${step}: ${stepItems[step - 1]}`;
+      }
+
+      function handlePrevious() {
+        if (step > 1) {
+          step--;
+          updateSteps();
+          updateMessage();
+        }
+      }
+
+      function handleNext() {
+        if (step < 3) {
+          step++;
+          updateSteps();
+          updateMessage();
+        }
+      }
+
+      previousButton.addEventListener("click", handlePrevious);
+      nextButton.addEventListener("click", handleNext);
+
+      // Inisialisasi pesan dan langkah-langkah saat memuat halaman
+      updateSteps();
+      updateMessage();
+    </script>
+  </body>
+</html>

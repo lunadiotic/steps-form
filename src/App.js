@@ -8,9 +8,6 @@ function App() {
   function handleNext() {
     if (step < 3) {
       setStep((step) => step + 1);
-      // setStep((step) => step + 1);
-      // setStep(step + 1); // 2
-      // setStep(step + 1); // 3
     }
   }
 
@@ -35,12 +32,14 @@ function App() {
           </p>
           <div className="buttons">
             <button
+              className="previous"
               style={{ backgroundColor: "#526D82", color: "#fff" }}
               onClick={handlePrev}
             >
               Prev
             </button>
             <button
+              className="next"
               style={{ backgroundColor: "#526D82", color: "#fff" }}
               onClick={handleNext}
             >
